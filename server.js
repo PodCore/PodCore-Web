@@ -1,8 +1,12 @@
 const app = require('express')();
 var server = require('http').Server(app)
 var io = require('socket.io')(server)
+const mongoose = require('mongoose');
+
 
 const port = process.env.PORT || '6969';
+
+mongoose.connect(process.env.MONGO_URI || 'localhost:27017/podcore-db');
 
 
 app.get('/rooms', function(req, res) {
@@ -64,6 +68,9 @@ io.on('connection', function(socket) {
 app.get('/', (req, res) => {
   res.send('Kash eats Lemons.');
 });
+
+
+
 
 server.listen(port, () => {
   console.log("Tripping Out On Port 6969.");
