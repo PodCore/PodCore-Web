@@ -30,7 +30,7 @@ io.on('connection', function(socket) {
     rooms[roomKey] = room
     socket.roomKey = roomKey
     socket.join(roomKey)
-
+    console.log(rooms);
   })
 
   socket.on('close_room', function(roomKey) {
