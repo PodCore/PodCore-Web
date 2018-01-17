@@ -13,6 +13,7 @@ app.get('/rooms', function(req, res) {
   var roomList = Object.keys(rooms).map(function(key) {
     return rooms[key]
   })
+  console.log(roomList);
   res.send(roomList)
 })
 
@@ -29,6 +30,7 @@ io.on('connection', function(socket) {
     rooms[roomKey] = room
     socket.roomKey = roomKey
     socket.join(roomKey)
+
   })
 
   socket.on('close_room', function(roomKey) {
