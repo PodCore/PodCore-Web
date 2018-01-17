@@ -8,6 +8,7 @@ const port = process.env.PORT || '6969';
 
 mongoose.connect(process.env.MONGO_URI || 'localhost:27017/podcore-db');
 
+var rooms = {}
 
 app.get('/rooms', function(req, res) {
   var roomList = Object.keys(rooms).map(function(key) {
@@ -16,8 +17,6 @@ app.get('/rooms', function(req, res) {
   console.log(roomList);
   res.send(roomList)
 })
-
-var rooms = {}
 
 io.on('connection', function(socket) {
 
