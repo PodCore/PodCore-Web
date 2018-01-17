@@ -6,6 +6,6 @@ app.get('/', (req, res) => {
   res.send('Kash eats Lemons.');
 });
 
-app.listen('6969', () => {
+app.listen(port, () => {
   console.log("Tripping Out On Port 6969.");
 });
