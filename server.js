@@ -1,6 +1,7 @@
 const app = require('express')();
 var server = require('http').Server(app)
 var io = require('socket.io')(server)
+var fs = require('fs');
 const mongoose = require('mongoose');
 
 
@@ -72,7 +73,13 @@ app.get('/', (req, res) => {
 
 
 
-
-server.listen(port, () => {
-  console.log("Tripping Out On Port 6969.");
-});
+self.start = function() {
+      //  Start the app on the specific interface (and port).
+      server.listen('/tmp/nginx.socket', function() {
+      	if (process.env.DYNO) {
+		 	console.log('This is on Heroku..!!');
+			fs.openSync('/tmp/app-initialized', 'w');
+		}
+      	console.log('Node server started on' + self.port + ' at ' + Date(new Date()));
+      			});
+  };
