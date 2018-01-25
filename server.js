@@ -8,22 +8,6 @@ const User = require('./models/User');
 
 
 
-const NodeMediaServer = require('node-media-server');
-const config = {
-  rtmp: {
-    port: 9001,
-    chunk_size: 60000,
-    gop_cache: true,
-    ping: 60,
-    ping_timeout: 30
-  },
-  http: {
-    port: port,
-    allow_origin: '*'
-  }
-};
-
-
 
 
 mongoose.connect(process.env.MONGO_URI || 'localhost:27017/podcore-db');
@@ -33,15 +17,15 @@ app.use(bodyParser.json());
 
 
 
-// var rooms = {}
-//
-// app.get('/rooms', function(req, res) {
-//   var roomList = Object.keys(rooms).map(function(key) {
-//     return rooms[key]
-//   })
-//   console.log(roomList);
-//   res.send(roomList)
-// })
+var rooms = {}
+
+app.get('/rooms', function(req, res) {
+  var roomList = Object.keys(rooms).map(function(key) {
+    return rooms[key]
+  })
+  console.log(roomList);
+  res.send(roomList)
+})
 
 
 io.on('connection', function(socket) {
@@ -78,5 +62,6 @@ app.post('/login', (req, res) => {
 })
 
 
-var nms = new NodeMediaServer(config)
-nms.run();
+server.listen(port, () => {
+  console.log("Listening on Port " + port)
+})
