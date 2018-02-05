@@ -1,6 +1,6 @@
 const app = require('express')();
-var server = require('http').Server(app)
-var io = require('socket.io')(server)
+const server = require('http').Server(app)
+const io = require('socket.io')(server)
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const port = process.env.PORT || '6969';

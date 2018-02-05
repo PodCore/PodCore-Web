@@ -17,6 +17,10 @@ module.exports = (io, socket) => {
     delete rooms[roomKey]
   })
 
+  socket.on('new_host', function(url) {
+    console.log(url);
+  })
+
   socket.on('disconnect', function() {
     console.log('disconnect:', socket.roomKey)
     if (socket.roomKey) {
