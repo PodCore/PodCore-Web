@@ -15,7 +15,7 @@ const io = require('socket.io')(server);				// Instantiate web sockets
 const mongoose = require('mongoose');					// Requires MongoDB
 const bodyParser = require('body-parser');				// Requires Body-Parser
 
-const port = process.env.PORT || '6969';				// Defines process-dependent port for web connection
+const port = process.env.PORT || '3000';				// Defines process-dependent port for web connection
 const User = require('./models/User');					// Defines user model
 
 
