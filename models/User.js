@@ -7,9 +7,9 @@ const bcrypt = require('bcrypt-nodejs');
 
 // Defines schema for users
 let userSchema = new mongoose.Schema({
-	username  :   String,
-    password  :   String,
-    email     :   String,
+	username  :    String,
+    password  :    String,
+    email     :    String,
     following :   [String],
     followers :   [String]
 });
