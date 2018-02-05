@@ -1,8 +1,18 @@
-const app = require('express')();
-var server = require('http').Server(app)
-var io = require('socket.io')(server)
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
+// ---------------------------------------------------------------------------------------------------- \\
+// ---------------------------------------- Server.js (PODCORE) --------------------------------------- \\
+// ---------------------------------------------------------------------------------------------------- \\
+// CONTRIBUTORS: James Rezendes, Aakash Sudhakar
+
+
+// ================================================================================
+// ============== IMPORT STATEMENTS, REQUIREMENTS, AND DEPENDENCIES ===============
+// ================================================================================
+
+const app = require('express')();						// Configures Express
+const server = require('http').Server(app); 			// Initialize instance of server
+const io = require('socket.io')(server);				// Initialize web sockets
+const mongoose = require('mongoose');					// Configures MongoDB
+const bodyParser = require('body-parser');				// 
 const port = process.env.PORT || '6969';
 const User = require('./models/User');
 
