@@ -8,71 +8,73 @@
 // ============== IMPORT STATEMENTS, REQUIREMENTS, AND DEPENDENCIES ===============
 // ================================================================================
 
-const app = require('express')();						// Configures Express
-const server = require('http').Server(app); 			// Initialize instance of server
-const io = require('socket.io')(server);				// Initialize web sockets
-const mongoose = require('mongoose');					// Configures MongoDB
-const bodyParser = require('body-parser');				// 
-const port = process.env.PORT || '6969';
-const User = require('./models/User');
+
+const app = require('express')();						// Requires Express
+const server = require('http').Server(app); 			// Instantiate instance of server
+const io = require('socket.io')(server);				// Instantiate web sockets
+const mongoose = require('mongoose');					// Requires MongoDB
+const bodyParser = require('body-parser');				// Requires Body-Parser
+
+const port = process.env.PORT || '6969';				// Defines process-dependent port for web connection
+const User = require('./models/User');					// Defines user model
 
 
+// ================================================================================
+// ====================== INITIALIZATIONS AND CONFIGURATIONS ======================
+// ================================================================================
 
 
-
+// Connects and configures instance of Mongoose
 mongoose.connect(process.env.MONGO_URI || 'localhost:27017/podcore-db');
 
+// Initializes and configures BodyParser in server
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());
 
 
-
-var rooms = {}
-
-app.get('/rooms', function(req, res) {
-  var roomList = Object.keys(rooms).map(function(key) {
-    return rooms[key]
-  })
-  console.log(roomList);
-  res.send(roomList)
-})
+// ================================================================================
+// ==================================== ROUTES ====================================
+// ================================================================================
 
 
-io.on('connection', function(socket) {
-  console.log("New Socket Connected");
-  require('./sockets/stream');
-})
+io.on('connection', (socket) => {
+	console.log(`\nNEW SOCKET CONNECTED.\n`);
+	require('./sockets/stream');
+});
+
+app.get('/rooms', (req, res) => {
+	const roomList = Object.keys(rooms).map((key) => { return rooms[key] })
+	console.log(`ROOM LIST IS: ${roomList}`);
+	res.send(roomList);
+});
 
 app.get('/', (req, res) => {
-  res.send('Kash eats Lemons.');
+  	res.send('TEST GET ROUTE WORKING SUCCESSFULLY.');
 });
 
 app.post('/register', (req, res) => {
-  let newUser = new User({
-    username : req.body.username,
-    email : req.body.email,
-  });
-  newUser.password = newUser.hashPassword(req.body.password);
-  newUser.save();
-  res.send(newUser);
+  	let newUser = new User({
+    	username 	: 	req.body.username,
+    	email 		: 	req.body.email,
+  	});
+  	newUser.password = newUser.hashPassword(req.body.password);
+  	newUser.save();
+  	res.send(newUser);
 });
 
 app.post('/login', (req, res) => {
-  User.findOne({username : req.body.username}, (err, user) => {
-    if(err){console.log(err)}
-    if (!user) {
-      res.status(404).send("No User with Username: " + req.body.username);
-    }else{
-      if(user.validPassword(req.body.password)){
-        res.send(user);
-      }else{
-        res.status(404).send("Wrong Password");
-      }
-    }
-  })
-})
-
+  	User
+  		.findOne({ username : req.body.username }, (err, user) => {
+    		if (err) { console.log(err) }
+			
+			if (!user) { res.status(404).send(`NO USER WITH USERNAME: ${req.body.username}`) }
+			else {
+				if (user.validPassword(req.body.password)) { res.send(user) }
+				else { res.status(404).send(`WRONG PASSWORD`) }
+    		}
+  		})
+});
 
 server.listen(port, () => {
-  console.log("Listening on Port " + port)
-})
+	console.log(`\nSERVER LISTENING ON PORT ${port}.`)
+});
