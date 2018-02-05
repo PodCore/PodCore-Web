@@ -29,6 +29,7 @@ app.get('/rooms', function(req, res) {
 
 
 io.on('connection', function(socket) {
+  console.log("New Socket Connected");
   require('./sockets/stream');
 })
 
