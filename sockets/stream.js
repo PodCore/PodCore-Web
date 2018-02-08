@@ -1,6 +1,6 @@
 module.exports = (io, socket) => {
 
-  socket.on('create_room', function(room) {
+  socket.on('create_broadcast', (function(room)) {
     if (!room.key) {
       return
     }
