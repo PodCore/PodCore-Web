@@ -18,6 +18,7 @@ module.exports = (io, socket) => {
     }
     socket.roomId = data.id
     socket.join(data.id)
+    console.log("Test");
   })
 
   socket.on('close_room', function(data) {
