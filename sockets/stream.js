@@ -8,7 +8,7 @@ module.exports = (io, socket) => {
     socket.emit('get_rooms', {rooms : roomList});
   });
 
-  socket.on('create_room', (data) => {
+  socket.on("create_room", (data) => {
     console.log('created room:', data.name)
     rooms[data.id] = {
       name : data.name,
@@ -56,5 +56,4 @@ module.exports = (io, socket) => {
     io.to(data.roomKey).emit('comment', data)
   })
 
->>>>>>> 96dcddb31ef2524bf1e6f963fdd98285edd909a5
 }
