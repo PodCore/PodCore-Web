@@ -1,20 +1,27 @@
 module.exports = (io, socket) => {
 
-  socket.on('create_broadcast', (function(room)) {
-    if (!room.key) {
-      return
-    }
-    console.log('create room:', room)
-    var roomKey = room.key
-    rooms[roomKey] = room
-    socket.roomKey = roomKey
-    socket.join(roomKey)
+  let rooms = {}
+
+  socket.on('get_rooms', () => {
     console.log(rooms);
+    socket.emit('get_rooms', {rooms : rooms});
+  });
+
+  socket.on('create_room', (data) => {
+    console.log('created room:', data.name)
+    rooms[data.id] = {
+      name : data.name,
+      id : data.id,
+      owner : data.owner,
+      topic : data.topic
+    }
+    socket.roomId = data.id
+    socket.join(data.id)
   })
 
-  socket.on('close_room', function(roomKey) {
-    console.log('close room:', roomKey)
-    delete rooms[roomKey]
+  socket.on('close_room', function(data) {
+    console.log('closed room:', data.name)
+    delete rooms[data.id]
   })
 
   socket.on('new_host', function(url) {
@@ -48,4 +55,5 @@ module.exports = (io, socket) => {
     io.to(data.roomKey).emit('comment', data)
   })
 
+>>>>>>> 96dcddb31ef2524bf1e6f963fdd98285edd909a5
 }
