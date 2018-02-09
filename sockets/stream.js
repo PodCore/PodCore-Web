@@ -18,7 +18,6 @@ module.exports = (io, socket) => {
     }
     socket.roomId = data.id
     socket.join(data.id)
-    console.log("Test");
   })
 
   socket.on('close_room', function(data) {
@@ -31,9 +30,9 @@ module.exports = (io, socket) => {
   })
 
   socket.on('disconnect', function() {
-    console.log('disconnect:', socket.roomKey)
-    if (socket.roomKey) {
-      delete rooms[socket.roomKey]
+    console.log('disconnect:', socket.roomId)
+    if (socket.roomId) {
+      delete rooms[socket.roomId]
     }
   })
 
