@@ -39,6 +39,20 @@ app.use(bodyParser.json());
 
 io.on('connection', (socket) => {
 	console.log(`\nNEW SOCKET CONNECTED.\n`);
+
+	socket.on("create_room", (data) => {
+    console.log('created room:', data.name)
+    rooms[data.id] = {
+      name : data.name,
+      id : data.id,
+      owner : data.owner,
+      topic : data.topic
+    }
+    socket.roomId = data.id
+    socket.join(data.id)
+    console.log("Test");
+  })
+
 	require('./sockets/stream');
 });
 
@@ -66,7 +80,7 @@ app.post('/login', (req, res) => {
   	User
   		.findOne({ username : req.body.username }, (err, user) => {
     		if (err) { console.log(err) }
-			
+
 			if (!user) { res.status(404).send(`NO USER WITH USERNAME: ${req.body.username}`) }
 			else {
 				if (user.validPassword(req.body.password)) { res.send(user) }
