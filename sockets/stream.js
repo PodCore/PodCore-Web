@@ -5,7 +5,7 @@ module.exports = (io, socket) => {
   socket.on('get_rooms', () => {
     const roomList = Object.keys(rooms).map((key) => { return rooms[key].name })
   	console.log("Rooms: " + roomList);
-    socket.emit('get_rooms', {rooms : roomList});
+    socket.emit('get_rooms', {rooms : rooms});
   });
 
   socket.on("create_room", (data) => {
