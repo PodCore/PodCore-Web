@@ -36,9 +36,10 @@ app.use(bodyParser.json());
 // ==================================== ROUTES ====================================
 // ================================================================================
 
-
+let rooms = {}
 io.on('connection', (socket) => {
 	console.log(`\nNEW SOCKET CONNECTED.\n`);
+
 
 	socket.on("create_room", (data) => {
     console.log('created room:', data.name)
