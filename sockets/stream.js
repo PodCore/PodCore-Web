@@ -1,3 +1,4 @@
+let User = require('../models/User');
 module.exports = (io, socket, rooms) => {
 
   socket.on('get_rooms', () => {
@@ -53,6 +54,24 @@ module.exports = (io, socket, rooms) => {
   socket.on('comment', function(data) {
     console.log("Room " + data.roomName + "'s " + data.username + " says: " + data.comment)
     io.to(data.roomId).emit('comment', data)
+  })
+
+  socket.on('new_follower', function(data) {
+    console.log(data.username + " is now following " + data.followingName);
+    User.findOne({username : data.followingName}, (err, user){
+      user.followers.push(data.username);
+      user.save(function(err, user){
+        //Maybe we'll do something, I dont know.
+        console.log(user.followers);
+      })
+    });
+    User.findOne({username : data.username}, (err, user) {
+      user.following.push(data.followingName);
+      user.save(function(err, user){
+        //Maybe we'll do something, I dont know.
+        console.log(user.following);
+      })
+    })
   })
 
 }
