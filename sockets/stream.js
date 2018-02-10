@@ -74,4 +74,17 @@ module.exports = (io, socket, rooms) => {
     })
   })
 
+  socket.on('get_followers', (data) => {
+    User.findOne({data.username}, (err, user) => {
+      socket.emit('get_followers', (user.followers));
+    })
+  })
+
+  socket.on('get_following', (data) => {
+    User.findOne({data.username}, (err, user) => {
+      socket.emit('get_following', (user.following));
+    })
+  })
+
+
 }
