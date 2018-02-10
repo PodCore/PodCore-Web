@@ -1,6 +1,5 @@
-module.exports = (io, socket) => {
+module.exports = (io, socket, rooms) => {
 
-  let rooms = {}
 
   socket.on('get_rooms', () => {
     const roomList = Object.keys(rooms).map((key) => { return rooms[key].name })
