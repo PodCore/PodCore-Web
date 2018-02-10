@@ -38,21 +38,6 @@ app.use(bodyParser.json());
 var rooms = {};
 io.on('connection', (socket) => {
 	console.log(`\nNEW SOCKET CONNECTED.\n`);
-
-
-	// socket.on("create_room", (data) => {
-  //   console.log('created room:', data.name)
-  //   rooms[data.id] = {
-  //     name : data.name,
-  //     id : data.id,
-  //     owner : data.owner,
-  //     topic : data.topic
-  //   }
-  //   socket.roomId = data.id
-  //   socket.join(data.id)
-  //   console.log("Test");
-  // })
-
 	require('./sockets/stream')(io, socket, rooms);
 });
 
