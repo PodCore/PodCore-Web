@@ -35,7 +35,7 @@ app.use(bodyParser.json());
 // ================================================================================
 // ==================================== ROUTES ====================================
 // ================================================================================
-
+var rooms = {};
 io.on('connection', (socket) => {
 	console.log(`\nNEW SOCKET CONNECTED.\n`);
 
@@ -53,7 +53,7 @@ io.on('connection', (socket) => {
   //   console.log("Test");
   // })
 
-	require('./sockets/stream')(io, socket);
+	require('./sockets/stream')(io, socket, rooms);
 });
 
 app.get('/rooms', (req, res) => {
