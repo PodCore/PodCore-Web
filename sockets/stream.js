@@ -1,9 +1,8 @@
 module.exports = (io, socket, rooms) => {
 
-
   socket.on('get_rooms', () => {
-    const roomList = Object.keys(rooms).map((key) => { return rooms[key].name })
-  	console.log(rooms);
+    // const roomList = Object.keys(rooms).map((key) => { return rooms[key].name })
+  	// console.log(rooms);
     socket.emit('get_rooms', rooms);
   });
 
@@ -36,8 +35,8 @@ module.exports = (io, socket, rooms) => {
     }
   })
 
-  socket.on('join_room', function(roomKey) {
-    console.log('join room:', roomKey)
+  socket.on('join_room', function(data) {
+    console.log(data.username + " has joined room " + data.roomName)
     socket.join(roomKey)
   })
 
@@ -52,8 +51,8 @@ module.exports = (io, socket, rooms) => {
   })
 
   socket.on('comment', function(data) {
-    console.log('comment:', data)
-    io.to(data.roomKey).emit('comment', data)
+    console.log("Room " + data.roomName + "'s " + data.username + " says: " + data.comment)
+    io.to(data.roomId).emit('comment', data)
   })
 
 }
