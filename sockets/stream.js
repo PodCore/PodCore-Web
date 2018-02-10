@@ -16,6 +16,7 @@ module.exports = (io, socket) => {
       owner : data.owner,
       topic : data.topic
     }
+    console.log(rooms);
     socket.roomId = data.id
     socket.join(data.id)
   })
