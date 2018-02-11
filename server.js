@@ -52,13 +52,19 @@ app.get('/', (req, res) => {
 });
 
 app.post('/register', (req, res) => {
-  	let newUser = new User({
-    	username 	: 	req.body.username,
-    	email 		: 	req.body.email,
-  	});
-  	newUser.password = newUser.hashPassword(req.body.password);
-  	newUser.save();
-  	res.send(newUser);
+		User.findOne({username : req.body.username}, (err, user) => {
+			if(user){
+				res.send("User Already Exists");
+			}else{
+		  	let newUser = new User({
+		    	username 	: 	req.body.username,
+		    	email 		: 	req.body.email,
+		  	});
+		  	newUser.password = newUser.hashPassword(req.body.password);
+		  	newUser.save();
+		  	res.send(newUser);
+			}
+		});
 });
 
 app.post('/login', (req, res) => {
