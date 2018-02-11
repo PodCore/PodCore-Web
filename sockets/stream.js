@@ -3,7 +3,7 @@ module.exports = (io, socket, rooms) => {
 
   socket.on('get_rooms', () => {
     // const roomList = Object.keys(rooms).map((key) => { return rooms[key].name })
-  	// console.log(rooms);
+  	console.log(rooms);
     socket.emit('get_rooms', rooms);
   });
 
