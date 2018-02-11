@@ -62,14 +62,12 @@ module.exports = (io, socket, rooms) => {
       user.followers.push(data.username);
       user.save(function(err, user){
         //Maybe we'll do something, I dont know.
-        console.log(user.followers);
       })
     });
     User.findOne({username : data.username}, (err, user) => {
       user.following.push(data.followingName);
       user.save(function(err, user){
         //Maybe we'll do something, I dont know.
-        console.log(user.following);
       })
     })
   })
