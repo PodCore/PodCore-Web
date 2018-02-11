@@ -35,7 +35,14 @@ app.use(bodyParser.json());
 // ================================================================================
 // ==================================== ROUTES ====================================
 // ================================================================================
-var rooms = {};
+var rooms = {
+	testRoom : {
+		name : "testRoom",
+		id : "testRoom",
+		owner : "James",
+		topic : "Testing"
+	}
+};
 io.on('connection', (socket) => {
 	console.log(`\nNEW SOCKET CONNECTED.\n`);
 	require('./sockets/stream')(io, socket, rooms);
