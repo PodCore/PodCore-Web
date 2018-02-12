@@ -87,15 +87,15 @@ app.post('/login', (req, res) => {
   		})
 });
 
-app.get('/followers', (data) => {
-	User.findOne({username : data.username}, (err, user) => {
+app.get('/followers', (req, res) => {
+	User.findOne({username : req.header("username")}, (err, user) => {
 		followerSet = new Set(user.followers);
 		res.json({followers : followerSet});
 	})
 })
 
-app.get('/following', (data) => {
-	User.findOne({username : data.username}, (err, user) => {
+app.get('/following', (req, res) => {
+	User.findOne({username : req.header("username")}, (err, user) => {
 		followingSet = new Set(user.following);
 		res.json({following : followingSet});
 	})
