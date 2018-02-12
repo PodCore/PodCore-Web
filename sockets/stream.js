@@ -59,13 +59,13 @@ module.exports = (io, socket, rooms) => {
   socket.on('new_follower', function(data) {
     console.log(data.username + " is now following " + data.followingName);
     User.findOne({username : data.followingName}, (err, user) => {
-      user.followers[data.username] = null;
+      user.followers[data.username] = "";
       user.save(function(err, user){
         //Maybe we'll do something, I dont know.
       })
     });
     User.findOne({username : data.username}, (err, user) => {
-      user.following[data.username] = null;
+      user.following[data.username] = "";
       user.save(function(err, user){
         //Maybe we'll do something, I dont know.
       })
