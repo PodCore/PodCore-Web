@@ -10,9 +10,9 @@ let userSchema = new mongoose.Schema({
 	username  :    String,
     password  :    String,
     email     :    String,
-    following :  {type : mongoose.Schema.Types.Mixed},
-    followers :  {type : mongoose.Schema.Types.Mixed}
-}, {strict : false});
+    following :  [String],
+    followers :  [String]
+});
 
 userSchema.methods.hashPassword = (pass) => {
 	return bcrypt.hashSync(pass, bcrypt.genSaltSync(8));
