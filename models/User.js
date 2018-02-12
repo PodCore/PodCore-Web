@@ -10,8 +10,8 @@ let userSchema = new mongoose.Schema({
 	username  :    String,
     password  :    String,
     email     :    String,
-    following :   {},
-    followers :  {}
+    following :   {String : String},
+    followers :  {String : String}
 });
 
 userSchema.methods.hashPassword = (pass) => {
