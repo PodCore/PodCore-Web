@@ -90,8 +90,8 @@ app.post('/login', (req, res) => {
 app.get('/followers', (req, res) => {
 	console.log(req.headers.username);
 	User.findOne({username : req.headers.username}, (err, user) => {
-		console.log(user);
 		followerSet = new Set(user.followers);
+		console.log(followerSet);
 		res.json({followers : followerSet});
 	})
 })
