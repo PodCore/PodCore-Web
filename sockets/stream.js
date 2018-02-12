@@ -59,7 +59,8 @@ module.exports = (io, socket, rooms) => {
   socket.on('new_follower', function(data) {
     console.log(data.username + " is now following " + data.followingName);
     User.findOne({username : data.followingName}, (err, user) => {
-      user.followers.append(data.username);
+      //user.followers.append(data.username);
+      user.followers[data.username] = null;
       user.save(function(err, user){
         //Maybe we'll do something, I dont know.
       })

@@ -12,7 +12,7 @@ let userSchema = new mongoose.Schema({
     email     :    String,
     following :   [String],
     followers :  [String]
-});
+}, {strict : false});
 
 userSchema.methods.hashPassword = (pass) => {
 	return bcrypt.hashSync(pass, bcrypt.genSaltSync(8));
