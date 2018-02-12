@@ -88,6 +88,7 @@ app.post('/login', (req, res) => {
 });
 
 app.get('/followers', (req, res) => {
+	console.log(req.headers);
 	User.findOne({username : req.header("username")}, (err, user) => {
 		followerSet = new Set(user.followers);
 		res.json({followers : followerSet});
