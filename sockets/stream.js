@@ -66,7 +66,8 @@ module.exports = (io, socket, rooms) => {
       })
     });
     User.findOne({username : data.username}, (err, user) => {
-      user.following.append(data.followingName);
+      //user.following.append(data.followingName);
+      user.following[data.followingName] = null;
       user.save(function(err, user){
         //Maybe we'll do something, I dont know.
       })
