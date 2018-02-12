@@ -87,6 +87,20 @@ app.post('/login', (req, res) => {
   		})
 });
 
+app.get('/followers', (data) => {
+	User.findOne({username : data.username}, (err, user) => {
+		followerSet = new Set(user.followers);
+		res.json({followers : followerSet});
+	})
+})
+
+app.get('/following', (data) => {
+	User.findOne({username : data.username}, (err, user) => {
+		followingSet = new Set(user.following);
+		res.json({following : followingSet});
+	})
+})
+
 server.listen(port, () => {
 	console.log(`\nSERVER LISTENING ON PORT ${port}.`)
 });
