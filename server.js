@@ -92,7 +92,7 @@ app.get('/followers', (req, res) => {
 	User.findOne({username : req.headers.username}, (err, user) => {
 		followerSet = new Set(user.followers);
 		console.log(followerSet);
-		res.json({followers : followerSet});
+		res.send(followerSet);
 	})
 })
 
