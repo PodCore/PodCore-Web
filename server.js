@@ -96,7 +96,7 @@ app.get('/followers', (req, res) => {
 })
 
 app.get('/following', (req, res) => {
-	User.findOne({username : req.header.username)}, (err, user) => {
+	User.findOne({username : req.header.username}, (err, user) => {
 		followingSet = new Set(user.following);
 		res.json({following : followingSet});
 	})
