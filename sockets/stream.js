@@ -13,7 +13,10 @@ module.exports = (io, socket, rooms) => {
       name : data.name,
       id : data.id,
       owner : data.owner,
-      topic : data.topic
+      topic : data.topic,
+      viewers : [],
+      viewCount : 0,
+      likes : 0
     }
     console.log(rooms);
     socket.roomId = data.id
@@ -37,8 +40,10 @@ module.exports = (io, socket, rooms) => {
   })
 
   socket.on('join_room', function(data) {
-    console.log(data.username + " has joined room " + data.roomName)
-    socket.join(roomKey)
+    console.log(data.username + " has joined room " + rooms[data.owner].name)
+    rooms[data.owner].viewers.push(data.username);
+    rooms[data.owner].viewCount += 1;
+    socket.join(rooms[data.owner].id);
   })
 
   socket.on('upvote', function(roomKey) {

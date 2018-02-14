@@ -54,6 +54,11 @@ app.get('/rooms', (req, res) => {
 	res.send(roomList);
 });
 
+app.get('/rooms/:owner', (req, res) => {
+	let owner = req.params.owner;
+	res.json(rooms[owner]);
+})
+
 app.get('/', (req, res) => {
   	res.send('TEST GET ROUTE WORKING SUCCESSFULLY.');
 });
