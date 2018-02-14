@@ -2,9 +2,12 @@ let User = require('../models/User');
 module.exports = (io, socket, rooms) => {
 
   socket.on('get_rooms', () => {
-    // const roomList = Object.keys(rooms).map((key) => { return rooms[key].name })
-  	console.log(rooms);
-    socket.emit('get_rooms', rooms);
+    const roomList = Object.keys(rooms).map((key) => { return rooms });
+    roomList.sort((a,b) => {
+      return a.viewCount < b.viewCount;
+    });
+    console.log(roomList);
+    socket.emit('get_rooms', roomList);
   });
 
   socket.on("create_room", (data) => {
