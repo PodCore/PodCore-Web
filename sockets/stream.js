@@ -9,7 +9,7 @@ module.exports = (io, socket, rooms) => {
 
   socket.on("create_room", (data) => {
     console.log('created room:', data.name)
-    rooms[data.id] = {
+    rooms[data.owner] = {
       name : data.name,
       id : data.id,
       owner : data.owner,
@@ -58,18 +58,24 @@ module.exports = (io, socket, rooms) => {
 
   socket.on('new_follower', function(data) {
     console.log(data.username + " is now following " + data.followingName);
-    User.findOne({username : data.followingName}, (err, user) => {
-      user.followers.push(data.username);
-      user.save(function(err, user){
+    User.findOne({username : data.followingName}, (err, followingUser) => {
+      followingUser.followers.push(data.username);
+      followingUser.save(function(err, user){
         //Maybe we'll do something, I dont know.
+      });
+      User.findOne({username : data.username}, (err, thisUser) => {
+        followingUserObj = {
+          username : followingUser.username,
+          imageUrl : followingUser.imageUrl,
+          streamName : rooms[followingUser.username].name,
+          streamId : rooms[followingUser.username].id
+        }
+        thisUser.following.push(followingUserObj);
+        thisUser.save(function(err, user){
+          //Maybe we'll do something, I dont know.
+        })
       })
     });
-    User.findOne({username : data.username}, (err, user) => {
-      user.following.push(data.followingName);
-      user.save(function(err, user){
-        //Maybe we'll do something, I dont know.
-      })
-    })
   })
 
 

@@ -10,7 +10,13 @@ let userSchema = new mongoose.Schema({
 	username  :    String,
     password  :    String,
     email     :    String,
-    following :  [String],
+		imageUrl : {type : String, default : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSh2AhPynQQxZquKJBe_chYKblZm3l4yx7DYDFRk_t1O7sMDKRZ"},
+    following :  [{
+			username : String,
+			imageUrl : {type : String, default : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSh2AhPynQQxZquKJBe_chYKblZm3l4yx7DYDFRk_t1O7sMDKRZ"},
+			streamName : {type : String, default : ""},
+			streamId : {type : String, default : ""}
+		}],
     followers :  [String]
 });
 
