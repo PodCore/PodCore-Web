@@ -2,7 +2,7 @@ let User = require('../models/User');
 module.exports = (io, socket, rooms) => {
 
   socket.on('get_rooms', () => {
-    let roomList = Object.keys(rooms).map((key) => { return room[key] });
+    let roomList = Object.keys(rooms).map((key) => { return rooms[key] });
     roomList.sort((a,b) => {
       return a.viewCount < b.viewCount;
     });
