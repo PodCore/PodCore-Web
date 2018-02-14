@@ -67,8 +67,8 @@ module.exports = (io, socket, rooms) => {
         followingUserObj = {
           username : followingUser.username,
           imageUrl : followingUser.imageUrl,
-          streamName : rooms[followingUser.username].name,
-          streamId : rooms[followingUser.username].id
+          streamName : rooms[followingUser.username] ? rooms[followingUser.username].name : "",
+          streamId : rooms[followingUser.username] ? rooms[followingUser.username].id : ""
         }
         thisUser.following.push(followingUserObj);
         thisUser.save(function(err, user){
