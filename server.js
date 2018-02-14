@@ -94,7 +94,7 @@ app.get('/followers', (req, res) => {
 
 app.get('/following', (req, res) => {
 	User.findOne({username : req.headers.username}, (err, user) => {
-		res.json({});
+		res.json({user.following});
 	})
 })
 
