@@ -2,7 +2,7 @@
   "name": "podcore-web",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "nodemon": "nodemon server.js"
@@ -13,9 +13,12 @@
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
+    "express-handlebars": "^3.0.0",
     "fluent-ffmpeg": "^2.1.2",
-    "mongoose": "^4.13.9",
+    "mongoose": "^4.13.11",
     "node-media-server": "^1.1.9",
+    "nodemon": "^1.15.0",
+    "path": "^0.12.7",
     "socket.io": "^2.0.4"
   }
 }

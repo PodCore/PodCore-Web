@@ -1,0 +1,32 @@
+body, html {
+    margin: 0;
+    font-size: 20px;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+.container {
+    display: grid;
+    grid-template-rows: 300px auto;
+}
+
+.header {
+    background-color: #5e8cd6;;
+    grid-row-start: 1;
+    display: flex;
+    align-items: center;
+}
+
+.header > p {
+    font-size: 4em;
+    padding-left: 30px;
+    background-color: #5e8cd6;
+    color: white !important;
+    letter-spacing: 3px;
+    font-weight: bold;
+}
+
+.content {
+    grid-row-start: 2;
+    margin: auto;
+    letter-spacing: 1.3px;
+}

@@ -8,8 +8,10 @@
 // ============== IMPORT STATEMENTS, REQUIREMENTS, AND DEPENDENCIES ===============
 // ================================================================================
 
-
-const app = require('express')();						// Requires Express
+const express = require('express');
+const exphbs = require('express-handlebars');
+const path = require('path');
+const app = express();									// Requires Express
 const server = require('http').Server(app); 			// Instantiate instance of server
 const io = require('socket.io')(server);				// Instantiate web sockets
 const mongoose = require('mongoose');					// Requires MongoDB
@@ -31,6 +33,12 @@ mongoose.connect(process.env.MONGO_URI || 'localhost:27017/podcore-db');
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());
 
+app.engine("handlebars", exphbs({defaultLayout: 'main'}));
+app.set("view engine", "handlebars");
+
+// serve static files
+app.use(express.static('public'));
+
 
 // ================================================================================
 // ==================================== ROUTES ====================================
@@ -49,7 +57,7 @@ app.get('/rooms', (req, res) => {
 });
 
 app.get('/', (req, res) => {
-  	res.send('TEST GET ROUTE WORKING SUCCESSFULLY.');
+  	res.render('layouts/main');
 });
 
 app.post('/register', (req, res) => {
