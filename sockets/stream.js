@@ -11,7 +11,6 @@ module.exports = (io, socket, rooms) => {
   });
 
   socket.on("create_room", (data) => {
-    console.log(data);
     console.log('created room:', data.name)
     rooms[data.owner] = {
       name : data.name,
@@ -23,7 +22,6 @@ module.exports = (io, socket, rooms) => {
       likes : 0,
       image : data.image
     }
-    console.log(rooms);
     socket.roomId = data.id
     socket.join(data.id)
   })
