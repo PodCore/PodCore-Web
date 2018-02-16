@@ -60,8 +60,9 @@ module.exports = (io, socket, rooms) => {
   })
 
   socket.on('comment', function(data) {
-    console.log("Room " + data.owner + "'s " + data.commenter + " says: " + data.comment)
-    io.to(data.roomId).emit('comment', data)
+    console.log("Room " + data.owner + "'s " + data.commenter + " says: " + data.comment);
+    commentData = {comment : data.comment, commenter : data.commenter};
+    io.to(data.roomId).emit('comment', commentData);
   })
 
   socket.on('new_follower', function(data) {
