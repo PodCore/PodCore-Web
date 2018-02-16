@@ -36,33 +36,33 @@ app.use(bodyParser.json());
 // ==================================== ROUTES ====================================
 // ================================================================================
 var rooms = {
-	testRoom3 : {
-		name : "testRoom3",
-		id : "testRoom3",
-		owner : "James3",
-		topic : "Testing",
-		viewers : [],
-		viewCount : 4,
-		likes : 0
-	},
-	testRoom1 : {
-		name : "testRoom1",
-		id : "testRoom1",
-		owner : "James1",
-		topic : "Testing",
-		viewers : [],
-		viewCount : 20,
-		likes : 0
-	},
-	testRoom2 : {
-		name : "testRoom2",
-		id : "testRoom2",
-		owner : "James2",
-		topic : "Testing",
-		viewers : [],
-		viewCount : 12,
-		likes : 0
-	}
+	// testRoom3 : {
+	// 	name : "testRoom3",
+	// 	id : "testRoom3",
+	// 	owner : "James3",
+	// 	topic : "Testing",
+	// 	viewers : [],
+	// 	viewCount : 4,
+	// 	likes : 0
+	// },
+	// testRoom1 : {
+	// 	name : "testRoom1",
+	// 	id : "testRoom1",
+	// 	owner : "James1",
+	// 	topic : "Testing",
+	// 	viewers : [],
+	// 	viewCount : 20,
+	// 	likes : 0
+	// },
+	// testRoom2 : {
+	// 	name : "testRoom2",
+	// 	id : "testRoom2",
+	// 	owner : "James2",
+	// 	topic : "Testing",
+	// 	viewers : [],
+	// 	viewCount : 12,
+	// 	likes : 0,
+	// }
 };
 io.on('connection', (socket) => {
 	console.log(`\nNEW SOCKET CONNECTED.\n`);

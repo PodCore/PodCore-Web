@@ -19,7 +19,8 @@ module.exports = (io, socket, rooms) => {
       topic : data.topic,
       viewers : [],
       viewCount : 0,
-      likes : 0
+      likes : 0,
+      image : data.image
     }
     console.log(rooms);
     socket.roomId = data.id
@@ -60,7 +61,7 @@ module.exports = (io, socket, rooms) => {
   })
 
   socket.on('comment', function(data) {
-    console.log("Room " + data.roomName + "'s " + data.username + " says: " + data.comment)
+    console.log("Room " + data.roomId + "'s " + data.username + " says: " + data.comment)
     io.to(data.roomId).emit('comment', data)
   })
 
