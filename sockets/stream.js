@@ -11,6 +11,7 @@ module.exports = (io, socket, rooms) => {
   });
 
   socket.on("create_room", (data) => {
+    console.log(data);
     console.log('created room:', data.name)
     rooms[data.owner] = {
       name : data.name,
