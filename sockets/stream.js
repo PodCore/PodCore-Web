@@ -6,7 +6,7 @@ module.exports = (io, socket, rooms) => {
     roomList.sort((a,b) => {
       return a.viewCount < b.viewCount;
     });
-    console.log(roomList);
+    //console.log(roomList);
     socket.emit('get_rooms', roomList);
   });
 
@@ -60,7 +60,7 @@ module.exports = (io, socket, rooms) => {
   })
 
   socket.on('comment', function(data) {
-    console.log("Room " + data.owner + "'s " + data.commenter + " says: " + data.comment);
+    console.log(data.commenter + ": " + data.comment);
     commentData = {comment : data.comment, commenter : data.commenter};
     io.to(data.roomId).emit('comment', commentData);
   })
