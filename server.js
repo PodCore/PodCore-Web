@@ -92,8 +92,9 @@ app.post('/register', (req, res) => {
 		  	let newUser = new User({
 		    	username 	: 	req.body.username,
 		    	email 		: 	req.body.email,
+					password : req.body.password
 		  	});
-		  	newUser.password = newUser.hashPassword(req.body.password);
+		  	//newUser.password = newUser.hashPassword(req.body.password);
 		  	newUser.save();
 		  	res.send(newUser);
 			}
@@ -101,14 +102,13 @@ app.post('/register', (req, res) => {
 });
 
 app.post('/login', (req, res) => {
-  	User.findOne({ username : req.body.username }, (err, user) => {
+  	User.findOne({ username : req.body.username, password : req.body.password }, (err, user) => {
     		if (err) { console.log(err) }
 			if (!user) { res.status(404).send(`NO USER WITH USERNAME: ${req.body.username}`) }
 			else {
-				if (user.validPassword(req.body.password)) { res.send(user) }
-				else { res.status(404).send(`WRONG PASSWORD`) }
-    		}
-  		})
+				res.send(user)
+  		};
+		});
 });
 
 app.get('/followers', (req, res) => {
