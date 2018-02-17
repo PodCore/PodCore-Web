@@ -60,7 +60,7 @@ module.exports = (io, socket, rooms) => {
   })
 
   socket.on('comment', function(data) {
-    console.log(data.commenter + ": " + data.comment);
+    console.log(data.owner + "'s room: " + data.commenter + ": " + data.comment);
     commentData = {comment : data.comment, commenter : data.commenter};
     io.to(data.roomId).emit('comment', commentData);
   })
