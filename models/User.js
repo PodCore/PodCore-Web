@@ -14,7 +14,7 @@ let userSchema = new mongoose.Schema({
     following :  [{
 			username : String,
 			imageUrl : {type : String, default : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSh2AhPynQQxZquKJBe_chYKblZm3l4yx7DYDFRk_t1O7sMDKRZ"},
-			streamName : {type : String, default : ""},
+			streamName : {type : String, default : "Offline"},
 			streamId : {type : String, default : ""}
 		}],
     followers :  [String]
