@@ -30,7 +30,7 @@ module.exports = (io, socket, rooms) => {
   socket.on('close_room', function(data) {
     console.log('closed room:', data.name)
     delete rooms[data.id]
-    socket.emit('remove_room', data.id);
+    io.emit('remove_room', data.id);
   })
 
   socket.on('new_host', function(url) {
@@ -41,7 +41,7 @@ module.exports = (io, socket, rooms) => {
     if (socket.roomId) {
       console.log('disconnect:', socket.roomId)
       delete rooms[socket.roomId]
-      socket.emit('remove_room', data.id);
+      io.emit('remove_room', data.id);
     }
   })
 
