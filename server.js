@@ -8,8 +8,8 @@
 // ============== IMPORT STATEMENTS, REQUIREMENTS, AND DEPENDENCIES ===============
 // ================================================================================
 
-
-const app = require('express')();						// Requires Express
+const express = require('express');
+const app = express();
 const server = require('http').Server(app); 			// Instantiate instance of server
 const io = require('socket.io')(server);				// Instantiate web sockets
 const mongoose = require('mongoose');					// Requires MongoDB
@@ -26,6 +26,9 @@ const User = require('./models/User');					// Defines user model
 
 // Connects and configures instance of Mongoose
 mongoose.connect(process.env.MONGO_URI || 'localhost:27017/podcore-db');
+
+app.set("view engine", "pug");
+app.use(express.static('public'))
 
 // Initializes and configures BodyParser in server
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -81,7 +84,7 @@ app.get('/rooms/:owner', (req, res) => {
 })
 
 app.get('/', (req, res) => {
-  	res.send('TEST GET ROUTE WORKING SUCCESSFULLY.');
+  	res.render('main');
 });
 
 app.post('/register', (req, res) => {
