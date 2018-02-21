@@ -28,6 +28,10 @@ export default function main(io, socket, $) {
       newRoom.find('.roomThumbUrl').attr('src', "http://blogdailyherald.com/wp-content/uploads/2014/10/wallpaper-for-facebook-profile-photo.jpg");
       newRoom.find('.roomLikeCount').text(room.likes + " Likes");
       newRoom.find('.roomViewCount').text(room.viewCount + " Views");
+    });
+
+    socket.on('remove_room', (roomId) => {
+      $('.' + roomId).remove();
     })
 
 
