@@ -1,5 +1,16 @@
-export default function main(io, socket, $) {
+export default function main(io, socket, $, AgoraRTC) {
   $(document).ready(()=>{
+
+    //Get Agora Client Connected
+    var client = AgoraRTC.createLiveClient();
+    AgoraRTC.getDevices((devices) =>{
+      console.log(devices);
+      var dev_count = devices.length;
+      var id = devices[0].deviceId;
+    });
+
+
+
 
     //Load all the current rooms
     socket.emit("get_rooms");

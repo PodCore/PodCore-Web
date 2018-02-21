@@ -74,7 +74,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 let socket = io();
 
 if(location.pathname == "/"){
-  Object(__WEBPACK_IMPORTED_MODULE_0__main_js__["a" /* default */])(io, socket, $);
+  Object(__WEBPACK_IMPORTED_MODULE_0__main_js__["a" /* default */])(io, socket, $, AgoraRTC);
 }
 
 
@@ -84,8 +84,19 @@ if(location.pathname == "/"){
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = main;
-function main(io, socket, $) {
+function main(io, socket, $, AgoraRTC) {
   $(document).ready(()=>{
+
+    //Get Agora Client Connected
+    var client = AgoraRTC.createLiveClient();
+    AgoraRTC.getDevices((devices) =>{
+      console.log(devices);
+      var dev_count = devices.length;
+      var id = devices[0].deviceId;
+    });
+
+
+
 
     //Load all the current rooms
     socket.emit("get_rooms");
