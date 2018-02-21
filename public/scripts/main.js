@@ -31,8 +31,9 @@ export default function main(io, socket, $) {
     });
 
     socket.on('remove_room', (roomId) => {
+      console.log("Remove Room");
       $('.' + roomId).remove();
-    })
+    });
 
 
   })
