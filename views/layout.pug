@@ -3,9 +3,9 @@ html
   head
     title My Site - #{title}
     block scripts
-      script(src='/jquery.js')
+      script(src='jquery.slim.min.js')
+      script(src='socket.io.slim.js')
+      script(src='layout.js')
   body
-    block content
+    block body
     block foot
-      #footer
-        p some footer content
