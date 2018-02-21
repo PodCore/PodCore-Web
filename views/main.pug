@@ -1,9 +1,13 @@
 extends layout
+block scripts
+  link(href='main.css', rel='stylesheet')
 block body
   .roomsContainer
     .roomProtoType
-      h2.roomName
-      h2.roomOwner
       img.roomThumbUrl
-      p.roomLikeCount
-      p.roomViewCount
+      .roomInfo
+        h2.roomOwner Owner
+        p.roomLikeCount 84
+        p.roomViewCount 1000
+      .title
+        h2.roomName Name
