@@ -2,10 +2,10 @@
 html
   head
     title My Site - #{title}
+    script(src='jquery.slim.min.js')
+    script(src='socket.io.slim.js')
+    script(src='bundle.js')
     block scripts
-      script(src='jquery.slim.min.js')
-      script(src='socket.io.slim.js')
-      script(src='bundle.js')
   body
     block body
     block foot

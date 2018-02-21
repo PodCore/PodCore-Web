@@ -43,53 +43,44 @@ app.use(bodyParser.json());
 // ==================================== ROUTES ====================================
 // ================================================================================
 var rooms = {
-	// testRoom3 : {
-	// 	name : "testRoom3",
-	// 	id : "testRoom3",
-	// 	owner : "James3",
-	// 	topic : "Testing",
-	// 	viewers : [],
-	// 	viewCount : 4,
-	// 	likes : 0
-	// },
-	// testRoom1 : {
-	// 	name : "testRoom1",
-	// 	id : "testRoom1",
-	// 	owner : "James1",
-	// 	topic : "Testing",
-	// 	viewers : [],
-	// 	viewCount : 20,
-	// 	likes : 0
-	// },
-	// testRoom2 : {
-	// 	name : "testRoom2",
-	// 	id : "testRoom2",
-	// 	owner : "James2",
-	// 	topic : "Testing",
-	// 	viewers : [],
-	// 	viewCount : 12,
-	// 	likes : 0,
-	// }
+	testRoom3 : {
+		name : "testRoom3",
+		id : "testRoom3",
+		owner : "James3",
+		topic : "Testing",
+		viewers : [],
+		viewCount : 4,
+		likes : 0
+	},
+	testRoom1 : {
+		name : "testRoom1",
+		id : "testRoom1",
+		owner : "James1",
+		topic : "Testing",
+		viewers : [],
+		viewCount : 20,
+		likes : 0
+	},
+	testRoom2 : {
+		name : "testRoom2",
+		id : "testRoom2",
+		owner : "James2",
+		topic : "Testing",
+		viewers : [],
+		viewCount : 12,
+		likes : 0,
+	}
 };
 io.on('connection', (socket) => {
 	console.log(`\nNEW SOCKET CONNECTED.\n`);
 	require('./sockets/stream')(io, socket, rooms);
 });
 
-app.get('/rooms', (req, res) => {
-	const roomList = Object.keys(rooms).map((key) => { return rooms[key] })
-	console.log(`ROOM LIST IS: ${roomList}`);
-	res.send(roomList);
-});
-
-app.get('/rooms/:owner', (req, res) => {
-	let owner = req.params.owner;
-	res.json(rooms[owner]);
-})
-
 app.get('/', (req, res) => {
   	res.render('main');
 });
+//Room Routes
+require('./controllers/rooms')(app, rooms);
 
 app.post('/register', (req, res) => {
 		User.findOne({username : req.body.username}, (err, user) => {

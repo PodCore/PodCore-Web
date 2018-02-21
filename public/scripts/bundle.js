@@ -71,7 +71,11 @@
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__main_js__ = __webpack_require__(1);
 
-Object(__WEBPACK_IMPORTED_MODULE_0__main_js__["a" /* default */])(io, $);
+let socket = io();
+
+if(location.pathname == "/"){
+  Object(__WEBPACK_IMPORTED_MODULE_0__main_js__["a" /* default */])(io, socket, $);
+}
 
 
 /***/ }),
@@ -80,8 +84,23 @@ Object(__WEBPACK_IMPORTED_MODULE_0__main_js__["a" /* default */])(io, $);
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = main;
-function main() {
-  console.log("Test");
+function main(io, socket, $) {
+  $(document).ready(()=>{
+    socket.emit("get_rooms");
+    socket.on("get_rooms", (rooms) => {
+      rooms.forEach((room) => {
+        let newRoom = $('.roomProtoType').clone()
+        newRoom.removeClass('roomProtoType');
+        newRoom.appendTo('.roomsContainer');
+        newRoom.addClass('room');
+        newRoom.find('.roomName').text(room.name);
+        newRoom.find('.roomOwner').text(room.owner);
+        newRoom.find('.roomThumbUrl').attr('src', "http://blogdailyherald.com/wp-content/uploads/2014/10/wallpaper-for-facebook-profile-photo.jpg");
+        newRoom.find('.roomLikeCount').text(room.likes + " Likes");
+        newRoom.find('.roomViewCount').text(room.viewCount + " Views");
+      })
+    })
+  })
 }
 
 
