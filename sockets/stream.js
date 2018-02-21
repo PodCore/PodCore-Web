@@ -30,6 +30,7 @@ module.exports = (io, socket, rooms) => {
   socket.on('close_room', function(data) {
     console.log('closed room:', data.name)
     delete rooms[data.id]
+    socket.emit('remove_room', data.id);
   })
 
   socket.on('new_host', function(url) {
@@ -37,9 +38,10 @@ module.exports = (io, socket, rooms) => {
   })
 
   socket.on('disconnect', function() {
-    console.log('disconnect:', socket.roomId)
     if (socket.roomId) {
+      console.log('disconnect:', socket.roomId)
       delete rooms[socket.roomId]
+      socket.emit('remove_room', data.id);
     }
   })
 
@@ -64,6 +66,18 @@ module.exports = (io, socket, rooms) => {
     console.log(data.owner + "'s room: " + data.commenter + ": " + data.comment);
     commentData = {comment : data.comment, commenter : data.commenter};
     io.to(data.roomId).emit('comment', commentData);
+  })
+
+  socket.on('followers', (username) => {
+  	User.findOne({username : username}, (err, user) => {
+  		res.json(user.followers);
+  	})
+  })
+
+  socket.on('following', (username) => {
+  	User.findOne({username : req.headers.username}, (err, user) => {
+  		res.json(user.following);
+  	})
   })
 
   socket.on('new_follower', function(data) {
