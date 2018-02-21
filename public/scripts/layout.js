@@ -1,4 +1,2 @@
-$(document).ready(() => {
-  var socket = io();
-  console.log("Test");
-});
+import main from './main.js'
+main(io, $);
