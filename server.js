@@ -28,7 +28,11 @@ const User = require('./models/User');					// Defines user model
 mongoose.connect(process.env.MONGO_URI || 'localhost:27017/podcore-db');
 
 app.set("view engine", "pug");
-app.use(express.static('public'))
+app.use(express.static('public/css'))
+app.use(express.static('public/scripts'))
+app.use(express.static('public/scripts/components'))
+
+
 
 // Initializes and configures BodyParser in server
 app.use(bodyParser.urlencoded({ extended: false }))
