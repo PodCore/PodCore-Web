@@ -8,7 +8,7 @@ export default function main(io, socket, $) {
         let newRoom = $('.roomProtoType').clone()
         newRoom.removeClass('roomProtoType');
         newRoom.appendTo('.roomsContainer');
-        newRoom.addClass('room').addClass(room.id);
+        newRoom.addClass('room').addClass(room.owner);
         newRoom.find('.roomName').text(room.name);
         newRoom.find('.roomOwner').text(room.owner);
         newRoom.find('.roomThumbUrl').attr('src', "http://blogdailyherald.com/wp-content/uploads/2014/10/wallpaper-for-facebook-profile-photo.jpg");
@@ -22,7 +22,7 @@ export default function main(io, socket, $) {
       let newRoom = $('.roomProtoType').clone();
       newRoom.removeClass('roomProtoType');
       newRoom.appendTo('.roomsContainer');
-      newRoom.addClass('room').addClass(room.id);
+      newRoom.addClass('room').addClass(room.owner);
       newRoom.find('.roomName').text(room.name);
       newRoom.find('.roomOwner').text(room.owner);
       newRoom.find('.roomThumbUrl').attr('src', "http://blogdailyherald.com/wp-content/uploads/2014/10/wallpaper-for-facebook-profile-photo.jpg");
@@ -30,9 +30,9 @@ export default function main(io, socket, $) {
       newRoom.find('.roomViewCount').text(room.viewCount + " Views");
     });
 
-    socket.on('remove_room', (roomId) => {
+    socket.on('remove_room', (owner) => {
       console.log("Remove Room");
-      $('.' + roomId).remove();
+      $('.' + owner).remove();
     });
 
 
