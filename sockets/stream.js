@@ -29,7 +29,7 @@ module.exports = (io, socket, rooms) => {
 
   socket.on('close_room', function(data) {
     delete rooms[data.owner];
-    //console.log(rooms);
+    console.log("Closing Room: " + data.name);
     io.emit('remove_room', data.owner);
   })
 
