@@ -23,7 +23,8 @@ module.exports = (io, socket, rooms) => {
       image : data.image
     }
     socket.roomId = data.id
-    socket.join(data.id)
+    socket.join(data.id);
+    io.emit('new_room', (rooms[data.owner]));
   })
 
   socket.on('close_room', function(data) {
