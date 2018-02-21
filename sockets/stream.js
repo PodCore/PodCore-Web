@@ -70,13 +70,13 @@ module.exports = (io, socket, rooms) => {
 
   socket.on('followers', (username) => {
   	User.findOne({username : username}, (err, user) => {
-  		res.json(user.followers);
+  		socket.emit('followers', user.followers);
   	})
   })
 
   socket.on('following', (username) => {
   	User.findOne({username : req.headers.username}, (err, user) => {
-  		res.json(user.following);
+  		socket.emit('following', user.following);
   	})
   })
 
