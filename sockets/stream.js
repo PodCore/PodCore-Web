@@ -41,7 +41,7 @@ module.exports = (io, socket, rooms) => {
     if (socket.roomId) {
       console.log('disconnect:', socket.roomId)
       delete rooms[socket.roomId]
-      io.emit('remove_room', data.id);
+      io.emit('remove_room', socket.roomId);
     }
   })
 
