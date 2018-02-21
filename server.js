@@ -50,7 +50,8 @@ var rooms = {
 		topic : "Testing",
 		viewers : [],
 		viewCount : 4,
-		likes : 0
+		likes : 0,
+		image : ""
 	},
 	testRoom1 : {
 		name : "testRoom1",
@@ -59,7 +60,8 @@ var rooms = {
 		topic : "Testing",
 		viewers : [],
 		viewCount : 20,
-		likes : 0
+		likes : 0,
+		image : ""
 	},
 	testRoom2 : {
 		name : "testRoom2",
@@ -69,6 +71,7 @@ var rooms = {
 		viewers : [],
 		viewCount : 12,
 		likes : 0,
+		image : ""
 	}
 };
 io.on('connection', (socket) => {
