@@ -37,22 +37,10 @@ export default function main(io, socket, $, AgoraRTC) {
       $('.' + owner).remove();
     });
 
-
-
-    //Get Agora Client Connected and Get their Devices
-    var client = AgoraRTC.createLiveClient();
-    AgoraRTC.getDevices((devices) =>{
-      console.log(devices);
-      var dev_count = devices.length;
-      var id = devices[0].deviceId;
-    });
-
-
     //Client Enters a Room
-    $('.room').mouseup(() => {
-      console.log("Test");
-      window.location = "/room/" + $(this).find('.roomOwner');
-    })
+    $(document).on('click', ".room", function () {
+      window.location = "/rooms/" + $(this).find('.roomOwner').text();
+    });
 
   })
 

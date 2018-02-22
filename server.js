@@ -18,6 +18,8 @@ const bodyParser = require('body-parser');				// Requires Body-Parser
 const port = process.env.PORT || '3000';				// Defines process-dependent port for web connection
 const User = require('./models/User');					// Defines user model
 
+const path = require('path');
+
 
 // ================================================================================
 // ====================== INITIALIZATIONS AND CONFIGURATIONS ======================
@@ -28,9 +30,10 @@ const User = require('./models/User');					// Defines user model
 mongoose.connect(process.env.MONGO_URI || 'localhost:27017/podcore-db');
 
 app.set("view engine", "pug");
-app.use(express.static('public/css'))
-app.use(express.static('public/scripts'))
-app.use(express.static('public/scripts/components'))
+app.use('/public/css', express.static(__dirname + '/public/css'));
+app.use('/public/scripts', express.static(__dirname + '/public/scripts'));
+app.use('/public/scripts/components', express.static(__dirname + '/public/components'));
+
 
 
 
@@ -43,7 +46,7 @@ app.use(bodyParser.json());
 // ==================================== ROUTES ====================================
 // ================================================================================
 var rooms = {
-	testRoom3 : {
+	James3 : {
 		name : "testRoom3",
 		id : "testRoom3",
 		owner : "James3",
@@ -53,7 +56,7 @@ var rooms = {
 		likes : 0,
 		image : ""
 	},
-	testRoom1 : {
+	James1 : {
 		name : "testRoom1",
 		id : "testRoom1",
 		owner : "James1",
@@ -63,7 +66,7 @@ var rooms = {
 		likes : 0,
 		image : ""
 	},
-	testRoom2 : {
+	James2 : {
 		name : "testRoom2",
 		id : "testRoom2",
 		owner : "James2",

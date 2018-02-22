@@ -70,11 +70,15 @@
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__main_js__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__room_js__ = __webpack_require__(2);
+
 
 let socket = io();
 
 if(location.pathname == "/"){
   Object(__WEBPACK_IMPORTED_MODULE_0__main_js__["a" /* default */])(io, socket, $, AgoraRTC);
+}else if(location.pathname.includes("/rooms/")){
+  Object(__WEBPACK_IMPORTED_MODULE_1__room_js__["a" /* default */])(io, socket, $, AgoraRTC);
 }
 
 
@@ -91,7 +95,7 @@ function main(io, socket, $, AgoraRTC) {
     socket.emit("get_rooms");
     socket.on("get_rooms", (rooms) => {
       rooms.forEach((room) => {
-        let newRoom = $('.roomProtoType').clone(true)
+        let newRoom = $('.roomProtoType').clone(true, true)
         newRoom.removeClass('roomProtoType');
         newRoom.appendTo('.roomsContainer');
         newRoom.addClass('room').addClass(room.owner);
@@ -106,7 +110,7 @@ function main(io, socket, $, AgoraRTC) {
 
     //Add the new rooms that get created
     socket.on('new_room', (room) => {
-      let newRoom = $('.roomProtoType').clone();
+      let newRoom = $('.roomProtoType').clone(true, true);
       newRoom.removeClass('roomProtoType');
       newRoom.appendTo('.roomsContainer');
       newRoom.addClass('room').addClass(room.owner);
@@ -123,7 +127,26 @@ function main(io, socket, $, AgoraRTC) {
       $('.' + owner).remove();
     });
 
+    //Client Enters a Room
+    $(document).on('click', ".room", function () {
+      window.location = "/rooms/" + $(this).find('.roomOwner').text();
+    });
 
+  })
+
+
+}
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = room;
+function room(io, socket, $, AgoraRTC) {
+
+  $(document).ready(() => {
 
     //Get Agora Client Connected and Get their Devices
     var client = AgoraRTC.createLiveClient();
@@ -133,14 +156,19 @@ function main(io, socket, $, AgoraRTC) {
       var id = devices[0].deviceId;
     });
 
+    let streamId = $('.roomId').text();
 
-    //Client Enters a Room
-    $('.room').mouseup(() => {
-      console.log("Test");
-      window.location = "/room/" + $(this).find('.roomOwner');
-    })
+    var stream = AgoraRTC.createStream({streamID: streamId, audio:true, video:true, screen:false});
+
+    client.init(streamId, function() {
+        console.log("client initialized");
+        //join channel
+    }, function(err) {
+        console.log("client init failed ", err);
+        //error handling
+    });
+
   })
-
 
 }
 
