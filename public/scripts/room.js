@@ -26,7 +26,7 @@ export default function room(io, socket, $, AgoraRTC) {
 
     let appId = "6a05c965b5644b508eae5db13c82fdba";
 
-    console.log(streamName);
+    console.log(streamId);
 
     client.init(appId, function() {
         console.log("client initialized");
