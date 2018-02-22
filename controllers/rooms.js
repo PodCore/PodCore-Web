@@ -8,7 +8,7 @@ module.exports = (app, rooms) => {
 
   app.get('/rooms/:owner', (req, res) => {
   	let owner = req.params.owner;
-  	res.json(rooms[owner]);
+  	res.render('room', {room : rooms[owner]})
   })
 
 }
