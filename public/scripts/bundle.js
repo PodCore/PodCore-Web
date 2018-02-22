@@ -157,13 +157,13 @@ function room(io, socket, $, AgoraRTC) {
   let streamId = $('.roomId').text();
 
   let appId = "6a05c965b5644b508eae5db13c82fdba";
-  let stream = AgoraRTC.createStream({streamID: streamId, audio:true, video:true, screen:false})
 
 
   client.init(appId, function() {
       console.log("client initialized");
-      client.join(streamId, appId, null, function(uid) {
+      client.join(null, appId, null, function(uid) {
         console.log("User " + uid + " join channel successfully");
+        let stream = AgoraRTC.createStream({streamID: uid, audio:true, video:true, screen:false})
         stream.init(() => {
           console.log("Test");
           stream.play('video');
