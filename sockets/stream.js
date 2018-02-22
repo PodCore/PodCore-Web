@@ -68,6 +68,12 @@ module.exports = (io, socket, rooms) => {
     io.to(data.owner).emit('comment', commentData);
   })
 
+  socket.on('get_user', (username) => {
+    User.findOne({username : username}, (err, user) => {
+      socket.emit('get_user', user);
+    })
+  })
+
   socket.on('followers', (username) => {
     console.log("Followers Request for " + username)
   	User.findOne({username : username}, (err, user) => {
