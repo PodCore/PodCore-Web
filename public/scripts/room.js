@@ -15,10 +15,10 @@ export default function room(io, socket, $, AgoraRTC) {
     var stream = AgoraRTC.createStream({streamID: streamId, audio:true, video:true, screen:false});
 
     client.join(streamId, undefined, function(uid) {
-        console.log("client initialized");
-        //join channel
-    }, function(uid) {
-        console.log("client init failed ");
+        console.log("client" + uid + "joined channel");
+        //create local stream
+    }, function(err) {
+        console.log("client join failed ", err);
         //error handling
     });
 
