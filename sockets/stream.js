@@ -77,7 +77,7 @@ module.exports = (io, socket, rooms) => {
 
   socket.on('following', (username) => {
     console.log("Following Request for " + username)
-  	User.findOne({username : req.headers.username}, (err, user) => {
+  	User.findOne({username : username}, (err, user) => {
   		socket.emit('following', user.following);
   	})
   })
