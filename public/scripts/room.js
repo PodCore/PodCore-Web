@@ -19,6 +19,7 @@ export default function room(io, socket, $, AgoraRTC) {
       client.join(streamId, appId, null, function(uid) {
         console.log("User " + uid + " join channel successfully");
         stream.init(() => {
+          console.log("Test");
           stream.play('video');
         });
       }, function(err){
