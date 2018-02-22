@@ -18,11 +18,13 @@ export default function room(io, socket, $, AgoraRTC) {
 
     client.init(appId, function() {
         console.log("client initialized");
-        client.join(streamId, undefined, function(uid){
-          console.log("Client Joined");
-        }, function(err){
-          console.log("Client did not join");
-        })
+        client.join(streamId, undefined, function(uid) {
+            console.log("client" + uid + "joined channel");
+
+        }, function(err) {
+            console.log("client join failed ", err);
+            //error handling
+        });
         //join channel
     }, function(err) {
         console.log("client init failed ", err);
