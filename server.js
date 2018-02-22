@@ -48,7 +48,7 @@ app.use(bodyParser.json());
 var rooms = {
 	James3 : {
 		name : "testRoom3",
-		id : "testRoom3",
+		id : "4F394B5D-9F89-43A6-9B03-D1E9106EDA7A",
 		owner : "James3",
 		topic : "Testing",
 		viewers : [],
