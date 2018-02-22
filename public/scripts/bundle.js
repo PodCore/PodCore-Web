@@ -161,7 +161,7 @@ function room(io, socket, $, AgoraRTC) {
 
   client.init(appId, function() {
       console.log("client initialized");
-      client.join(appId, streamId, undefined, function(uid) {
+      client.join(streamId, appId, null, function(uid) {
         console.log("User " + uid + " join channel successfully");
       }, function(err){
         console.log("join failed");
