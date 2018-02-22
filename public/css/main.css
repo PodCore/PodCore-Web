@@ -1,5 +1,5 @@
 body{
-  background-color: #78c9af;
+  background-color: #edc207;
 }
 
 .roomProtoType {
@@ -17,12 +17,15 @@ body{
 }
 
 .room {
+  font-family:serif;
   width : 200px;
-  border : 2px solid black;
+  border : 5px solid white;
+  border-radius: 10px;
   display : flex;
   flex-direction: column;
   justify-content: space-between;
   align-items : center;
+  background-color: #f6f7d7;
 }
 
 .roomOwner{
@@ -43,7 +46,7 @@ body{
 .roomInfo {
   height : 30px;
   display : flex;
-  border : 2px solid black;
+  border-bottom: 1px solid grey;
   width : 200px;
   flex-direction: row;
   justify-content: space-around;
