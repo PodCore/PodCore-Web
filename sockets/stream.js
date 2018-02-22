@@ -70,6 +70,7 @@ module.exports = (io, socket, rooms) => {
 
   socket.on('get_user', (username) => {
     User.findOne({username : username}, (err, user) => {
+      console.log("Getting Info on " + user);
       socket.emit('get_user', user);
     })
   })
