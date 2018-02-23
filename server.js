@@ -46,36 +46,36 @@ app.use(bodyParser.json());
 // ==================================== ROUTES ====================================
 // ================================================================================
 var rooms = {
-	// James3 : {
-	// 	name : "testRoom3",
-	// 	id : "4F394B5D-9F89-43A6-9B03-D1E9106EDA7A",
-	// 	owner : "James3",
-	// 	topic : "Testing",
-	// 	viewers : [],
-	// 	viewCount : 4,
-	// 	likes : 0,
-	// 	image : ""
-	// },
-	// James1 : {
-	// 	name : "testRoom1",
-	// 	id : "testRoom1",
-	// 	owner : "James1",
-	// 	topic : "Testing",
-	// 	viewers : [],
-	// 	viewCount : 20,
-	// 	likes : 0,
-	// 	image : ""
-	// },
-	// James2 : {
-	// 	name : "testRoom2",
-	// 	id : "testRoom2",
-	// 	owner : "James2",
-	// 	topic : "Testing",
-	// 	viewers : [],
-	// 	viewCount : 12,
-	// 	likes : 0,
-	// 	image : ""
-	// }
+	James3 : {
+		name : "testRoom3",
+		id : "4F394B5D-9F89-43A6-9B03-D1E9106EDA7A",
+		owner : "James3",
+		topic : "Testing",
+		viewers : [],
+		viewCount : 4,
+		likes : 0,
+		image : "https://slack-imgs.com/?c=1&url=https%3A%2F%2Fwww.billboard.com%2Ffiles%2Fmedia%2Fempire-state-building-2016-billboard-1548.jpg"
+	},
+	James1 : {
+		name : "testRoom1",
+		id : "testRoom1",
+		owner : "James1",
+		topic : "Testing",
+		viewers : [],
+		viewCount : 20,
+		likes : 0,
+		image : "https://slack-imgs.com/?c=1&url=https%3A%2F%2Fwww.billboard.com%2Ffiles%2Fmedia%2Fempire-state-building-2016-billboard-1548.jpg"
+	},
+	James2 : {
+		name : "testRoom2",
+		id : "testRoom2",
+		owner : "James2",
+		topic : "Testing",
+		viewers : [],
+		viewCount : 12,
+		likes : 0,
+		image : "https://slack-imgs.com/?c=1&url=https%3A%2F%2Fwww.billboard.com%2Ffiles%2Fmedia%2Fempire-state-building-2016-billboard-1548.jpg"
+	}
 };
 io.on('connection', (socket) => {
 	console.log(`\nNEW SOCKET CONNECTED.\n`);
