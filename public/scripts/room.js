@@ -15,11 +15,6 @@ export default function room(io, socket, $, AgoraRTC) {
   $(document).ready(() => {
     //Get Agora Client Connected and Get their Devices
     let client = AgoraRTC.createClient({mode: 'interop'});
-    // AgoraRTC.getDevices((devices) =>{
-    //   console.log(devices);
-    //   var dev_count = devices.length;
-    //   var id = devices[0].deviceId;
-    // });
 
     let streamId = $('.roomId').text();
     let streamName = $('.roomName').text();
@@ -30,7 +25,6 @@ export default function room(io, socket, $, AgoraRTC) {
 
     client.init(appId, function() {
         console.log("client initialized");
-        console.log(streamId);
         client.join(streamId, streamName , null, function(uid) {
           console.log("User " + uid + " join channel successfully");
           // let stream = AgoraRTC.createStream({streamID: uid, audio:true, video:true, screen:false})
