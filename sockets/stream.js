@@ -6,7 +6,7 @@ module.exports = (io, socket, rooms) => {
     roomList.sort((a,b) => {
       return a.viewCount < b.viewCount;
     });
-    //console.log(roomList);
+    console.log(roomList);
     socket.emit('get_rooms', roomList);
   });
 
