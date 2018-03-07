@@ -60,7 +60,7 @@ module.exports = (io, socket, rooms) => {
 
   socket.on('emoji', function(data) {
     console.log('emoji:', data.owner)
-    io.to(data.owner).emit('emoji', data)
+    io.to(data.owner).emit('emoji', {gifter : data.gifter})
   })
 
   socket.on('comment', function(data) {
