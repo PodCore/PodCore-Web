@@ -55,7 +55,7 @@ module.exports = (io, socket, rooms) => {
   socket.on('upvote', function(data) {
     console.log('upvote:', data.owner)
     rooms[data.owner].likes += 1;
-    io.to(data.owner).emit('upvote')
+    io.to(data.owner).emit('upvote', {likes : rooms[data.owner].likes})
   })
 
   socket.on('emoji', function(data) {
