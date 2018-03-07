@@ -40,7 +40,7 @@ module.exports = (io, socket, rooms) => {
   socket.on('disconnect', function() {
     if (socket.owner) {
       console.log('disconnect:', socket.owner)
-      //delete rooms[socket.owner]
+      delete rooms[socket.owner]
       io.emit('remove_room', socket.owner);
     }
   })
@@ -52,20 +52,21 @@ module.exports = (io, socket, rooms) => {
     socket.join(rooms[data.owner].id);
   })
 
-  socket.on('upvote', function(roomKey) {
-    console.log('upvote:', roomKey)
-    io.to(roomKey).emit('upvote')
+  socket.on('upvote', function(data) {
+    console.log('upvote:', data.owner)
+    rooms[data.owner].likes += 1;
+    io.to(data.owner).emit('upvote')
   })
 
-  socket.on('gift', function(data) {
-    console.log('gift:', data)
-    io.to(data.roomKey).emit('gift', data)
+  socket.on('emoji', function(data) {
+    console.log('emoji:', data.owner)
+    io.to(data.owner).emit('emoji', data)
   })
 
   socket.on('comment', function(data) {
     console.log(data.owner + "'s room: " + data.commenter + ": " + data.comment);
     commentData = {comment : data.comment, commenter : data.commenter};
-    io.to(data.owner).emit('comment', commentData);
+    io.to(data.owner).emit('comment', {commenter : data.commenter, comment : data.comment});
   })
 
   socket.on('get_user', (username) => {
