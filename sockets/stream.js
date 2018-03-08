@@ -20,6 +20,7 @@ module.exports = (io, socket, rooms) => {
       viewers : [],
       viewCount : 0,
       likes : 0,
+      likers : [],
       image : data.image
     }
     socket.owner = data.owner
@@ -53,9 +54,12 @@ module.exports = (io, socket, rooms) => {
   })
 
   socket.on('upvote', function(data) {
-    console.log('upvote:', data.owner)
-    rooms[data.owner].likes += 1;
-    io.to(data.owner).emit('upvote', {likes : rooms[data.owner].likes})
+    if(!rooms[data.owner].likers.includes(data.upvoter)){
+      console.log('upvote:', data.owner + ": " + (rooms[data.owner].likes + 1))
+      rooms[data.owner].likes += 1;
+      rooms[data.owner].likers.push(data.upvoter);
+      io.to(data.owner).emit('upvote', {likes : rooms[data.owner].likes})
+    }
   })
 
   socket.on('emoji', function(data) {
