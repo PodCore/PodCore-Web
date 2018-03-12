@@ -50,7 +50,7 @@ module.exports = (io, socket, rooms) => {
     console.log(data.username + " has joined room " + rooms[data.owner].name)
     rooms[data.owner].viewers.push(data.username);
     rooms[data.owner].viewCount += 1;
-    socket.join(rooms[data.owner].id);
+    socket.join(data.owner);
   })
 
   socket.on('upvote', function(data) {
