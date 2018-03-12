@@ -53,6 +53,14 @@ module.exports = (io, socket, rooms) => {
     socket.join(data.owner);
   })
 
+  socket.on('leave_room', function(data) {
+    console.log(data.username + " has left room " + data.owner);
+    userIndex = rooms[data.owner].viewers.indexOf(data.username);
+    rooms[data.owner].viewers.pop(userIndex, 1);
+    rooms[data.owner].viewCount -= 1;
+    socket.leave(data.owner);
+  })
+
   socket.on('upvote', function(data) {
     if(!rooms[data.owner].likers.includes(data.upvoter)){
       console.log('upvote:', data.owner + ": " + (rooms[data.owner].likes + 1))
