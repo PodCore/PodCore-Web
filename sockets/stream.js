@@ -21,6 +21,7 @@ module.exports = (io, socket, rooms) => {
       viewCount : 0,
       likes : 0,
       likers : [],
+      emojiGram : {},
       image : data.image
     }
     socket.owner = data.owner
@@ -71,8 +72,17 @@ module.exports = (io, socket, rooms) => {
   })
 
   socket.on('emoji', function(data) {
-    console.log('emoji:', data.owner)
-    io.to(data.owner).emit('emoji', {gifter : data.gifter})
+    console.log(data.owner + ": " + data.emojier + ": " + data.emojiNum);
+    if(data.emojiNum in rooms[data.owner].emojiGram){
+      rooms[data.owner].emojiGram[data.emojiNum] += 1;
+    }else{
+      rooms[data.owner].emojiGram[data.emojiNum] = 1;
+    }
+    io.to(data.owner).emit('emoji', {
+      emojier : data.emojier,
+      emojiNum : data.emojiNum,
+      emojiGram : rooms[data.owner].emojiGram
+    });
   })
 
   socket.on('comment', function(data) {
