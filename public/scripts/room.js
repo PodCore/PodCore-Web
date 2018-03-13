@@ -1,6 +1,36 @@
 export default function room(io, socket, $, AgoraRTC) {
 
+<<<<<<< HEAD
 
+=======
+  console.log(AgoraRTC);
+  //Get Agora Client Connected and Get their Devices
+  let client = AgoraRTC.createClient({mode: 'interop'});
+  // AgoraRTC.getDevices((devices) =>{
+  //   console.log(devices);
+  //   var dev_count = devices.length;
+  //   var id = devices[0].deviceId;
+  // });
+
+  let streamId = $('.roomId').text();
+
+  let appId = "6a05c965b5644b508eae5db13c82fdba";
+
+  client.init(appId, function() {
+      console.log("client initialized");
+      client.join(streamId, appId, null, function(uid) {
+        console.log("User " + uid + " join channel successfully");
+      }, function(err){
+        console.log("join failed");
+      })
+      //join channel
+  }, function(err) {
+      console.log("client init failed ", err);
+      //error handling
+  });
+
+  let stream = AgoraRTC.createStream({streamID: streamId, audio:true, video:true, screen:false})
+>>>>>>> 8492cbf6fb9e131d15bc2c72dbeb9a62a4444dca
 
   // stream.init(()=>{
   //   console.log("stream initalized");
@@ -13,6 +43,7 @@ export default function room(io, socket, $, AgoraRTC) {
 
 
   $(document).ready(() => {
+<<<<<<< HEAD
     //Get Agora Client Connected and Get their Devices
     let client = AgoraRTC.createClient({mode: 'interop'});
 
@@ -40,6 +71,8 @@ export default function room(io, socket, $, AgoraRTC) {
         console.log("client init failed ", err);
         //error handling
     });
+=======
+>>>>>>> 8492cbf6fb9e131d15bc2c72dbeb9a62a4444dca
 
   })
 

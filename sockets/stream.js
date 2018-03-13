@@ -6,11 +6,19 @@ module.exports = (io, socket, rooms) => {
     roomList.sort((a,b) => {
       return a.viewCount < b.viewCount;
     });
+<<<<<<< HEAD
     console.log(roomList);
+=======
+    //console.log(roomList);
+>>>>>>> 8492cbf6fb9e131d15bc2c72dbeb9a62a4444dca
     socket.emit('get_rooms', roomList);
   });
 
   socket.on("create_room", (data) => {
+<<<<<<< HEAD
+=======
+    console.log('created room:', data.name)
+>>>>>>> 8492cbf6fb9e131d15bc2c72dbeb9a62a4444dca
     rooms[data.owner] = {
       name : data.name,
       id : data.id,
@@ -19,6 +27,7 @@ module.exports = (io, socket, rooms) => {
       viewers : [],
       viewCount : 0,
       likes : 0,
+<<<<<<< HEAD
       likers : [],
       emojiGram : {},
       image : data.image,
@@ -27,6 +36,12 @@ module.exports = (io, socket, rooms) => {
     socket.owner = data.owner
     socket.join(data.owner);
     console.log('New Room:', rooms[data.owner])
+=======
+      image : data.image
+    }
+    socket.owner = data.owner
+    socket.join(data.owner);
+>>>>>>> 8492cbf6fb9e131d15bc2c72dbeb9a62a4444dca
     io.emit('new_room', (rooms[data.owner]));
   })
 
@@ -43,7 +58,11 @@ module.exports = (io, socket, rooms) => {
   socket.on('disconnect', function() {
     if (socket.owner) {
       console.log('disconnect:', socket.owner)
+<<<<<<< HEAD
       delete rooms[socket.owner]
+=======
+      //delete rooms[socket.owner]
+>>>>>>> 8492cbf6fb9e131d15bc2c72dbeb9a62a4444dca
       io.emit('remove_room', socket.owner);
     }
   })
@@ -52,6 +71,7 @@ module.exports = (io, socket, rooms) => {
     console.log(data.username + " has joined room " + rooms[data.owner].name)
     rooms[data.owner].viewers.push(data.username);
     rooms[data.owner].viewCount += 1;
+<<<<<<< HEAD
     socket.join(data.owner);
   })
 
@@ -84,12 +104,29 @@ module.exports = (io, socket, rooms) => {
       emojiNum : data.emojiNum,
       emojiGram : rooms[data.owner].emojiGram
     });
+=======
+    socket.join(rooms[data.owner].id);
+  })
+
+  socket.on('upvote', function(roomKey) {
+    console.log('upvote:', roomKey)
+    io.to(roomKey).emit('upvote')
+  })
+
+  socket.on('gift', function(data) {
+    console.log('gift:', data)
+    io.to(data.roomKey).emit('gift', data)
+>>>>>>> 8492cbf6fb9e131d15bc2c72dbeb9a62a4444dca
   })
 
   socket.on('comment', function(data) {
     console.log(data.owner + "'s room: " + data.commenter + ": " + data.comment);
     commentData = {comment : data.comment, commenter : data.commenter};
+<<<<<<< HEAD
     io.to(data.owner).emit('comment', {commenter : data.commenter, comment : data.comment});
+=======
+    io.to(data.owner).emit('comment', commentData);
+>>>>>>> 8492cbf6fb9e131d15bc2c72dbeb9a62a4444dca
   })
 
   socket.on('get_user', (username) => {

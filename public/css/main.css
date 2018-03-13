@@ -1,5 +1,9 @@
 body{
+<<<<<<< HEAD
   background-color: #edc207;
+=======
+  background-color: #78c9af;
+>>>>>>> 8492cbf6fb9e131d15bc2c72dbeb9a62a4444dca
 }
 
 .roomProtoType {
@@ -17,15 +21,23 @@ body{
 }
 
 .room {
+<<<<<<< HEAD
   font-family:serif;
   width : 200px;
   border : 5px solid white;
   border-radius: 10px;
+=======
+  width : 200px;
+  border : 2px solid black;
+>>>>>>> 8492cbf6fb9e131d15bc2c72dbeb9a62a4444dca
   display : flex;
   flex-direction: column;
   justify-content: space-between;
   align-items : center;
+<<<<<<< HEAD
   background-color: #f6f7d7;
+=======
+>>>>>>> 8492cbf6fb9e131d15bc2c72dbeb9a62a4444dca
 }
 
 .roomOwner{
@@ -46,7 +58,11 @@ body{
 .roomInfo {
   height : 30px;
   display : flex;
+<<<<<<< HEAD
   border-bottom: 1px solid grey;
+=======
+  border : 2px solid black;
+>>>>>>> 8492cbf6fb9e131d15bc2c72dbeb9a62a4444dca
   width : 200px;
   flex-direction: row;
   justify-content: space-around;
