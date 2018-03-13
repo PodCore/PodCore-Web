@@ -82,6 +82,8 @@ io.on('connection', (socket) => {
 	require('./sockets/stream')(io, socket, rooms);
 });
 
+//Get my Contributions Back
+
 app.get('/', (req, res) => {
   	res.render('main');
 });
