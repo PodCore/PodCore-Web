@@ -1,9 +1,13 @@
 body{
 <<<<<<< HEAD
+<<<<<<< HEAD
   background-color: #edc207;
 =======
   background-color: #78c9af;
 >>>>>>> 8492cbf6fb9e131d15bc2c72dbeb9a62a4444dca
+=======
+  background-color: #edc207;
+>>>>>>> b15054f31f33692e4e9430ba1a99a8154d9d49e9
 }
 
 .roomProtoType {
@@ -22,6 +26,7 @@ body{
 
 .room {
 <<<<<<< HEAD
+<<<<<<< HEAD
   font-family:serif;
   width : 200px;
   border : 5px solid white;
@@ -30,14 +35,24 @@ body{
   width : 200px;
   border : 2px solid black;
 >>>>>>> 8492cbf6fb9e131d15bc2c72dbeb9a62a4444dca
+=======
+  font-family:serif;
+  width : 200px;
+  border : 5px solid white;
+  border-radius: 10px;
+>>>>>>> b15054f31f33692e4e9430ba1a99a8154d9d49e9
   display : flex;
   flex-direction: column;
   justify-content: space-between;
   align-items : center;
 <<<<<<< HEAD
+<<<<<<< HEAD
   background-color: #f6f7d7;
 =======
 >>>>>>> 8492cbf6fb9e131d15bc2c72dbeb9a62a4444dca
+=======
+  background-color: #f6f7d7;
+>>>>>>> b15054f31f33692e4e9430ba1a99a8154d9d49e9
 }
 
 .roomOwner{
@@ -59,10 +74,14 @@ body{
   height : 30px;
   display : flex;
 <<<<<<< HEAD
+<<<<<<< HEAD
   border-bottom: 1px solid grey;
 =======
   border : 2px solid black;
 >>>>>>> 8492cbf6fb9e131d15bc2c72dbeb9a62a4444dca
+=======
+  border-bottom: 1px solid grey;
+>>>>>>> b15054f31f33692e4e9430ba1a99a8154d9d49e9
   width : 200px;
   flex-direction: row;
   justify-content: space-around;

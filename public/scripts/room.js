@@ -1,6 +1,7 @@
 export default function room(io, socket, $, AgoraRTC) {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
   console.log(AgoraRTC);
@@ -31,6 +32,9 @@ export default function room(io, socket, $, AgoraRTC) {
 
   let stream = AgoraRTC.createStream({streamID: streamId, audio:true, video:true, screen:false})
 >>>>>>> 8492cbf6fb9e131d15bc2c72dbeb9a62a4444dca
+=======
+
+>>>>>>> b15054f31f33692e4e9430ba1a99a8154d9d49e9
 
   // stream.init(()=>{
   //   console.log("stream initalized");
@@ -44,6 +48,9 @@ export default function room(io, socket, $, AgoraRTC) {
 
   $(document).ready(() => {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> b15054f31f33692e4e9430ba1a99a8154d9d49e9
     //Get Agora Client Connected and Get their Devices
     let client = AgoraRTC.createClient({mode: 'interop'});
 
@@ -71,8 +78,11 @@ export default function room(io, socket, $, AgoraRTC) {
         console.log("client init failed ", err);
         //error handling
     });
+<<<<<<< HEAD
 =======
 >>>>>>> 8492cbf6fb9e131d15bc2c72dbeb9a62a4444dca
+=======
+>>>>>>> b15054f31f33692e4e9430ba1a99a8154d9d49e9
 
   })
 
