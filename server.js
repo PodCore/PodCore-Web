@@ -93,7 +93,7 @@ require('./controllers/rooms')(app, rooms);
 app.post('/register', (req, res) => {
 		User.findOne({username : req.body.username}, (err, user) => {
 			if(user){
-				res.status(500).json({error : "User Already Exists"});
+				res.status(404).json({err : "User Already Exists"});
 			}else{
 		  	let newUser = new User({
 		    	username 	: 	req.body.username,
