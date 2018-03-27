@@ -94,7 +94,7 @@ app.post('/register', (req, res) => {
 		console.log("Registering a New User");
 		User.findOne({username : req.body.username}, (err, user) => {
 			if(user){
-				res.send("User Already Exists");
+				res.status(404).send("User Already Exists");
 			}else{
 				console.log("creating user info");
 		  	let newUser = new User({
