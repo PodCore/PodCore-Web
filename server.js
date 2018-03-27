@@ -91,16 +91,19 @@ app.get('/', (req, res) => {
 require('./controllers/rooms')(app, rooms);
 
 app.post('/register', (req, res) => {
+		console.log("Registering a New User");
 		User.findOne({username : req.body.username}, (err, user) => {
 			if(user){
 				res.send("User Already Exists");
 			}else{
+				console.log("creating user info");
 		  	let newUser = new User({
 		    	username 	: 	req.body.username,
 		    	email 		: 	req.body.email,
 		  	});
 		  	newUser.password = newUser.hashPassword(req.body.password);
 		  	newUser.save((err, newUser) => {
+					console.log("sending over user");
 					res.send(newUser);
 				});
 			}
