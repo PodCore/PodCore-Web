@@ -98,21 +98,25 @@ app.post('/register', (req, res) => {
 		  	let newUser = new User({
 		    	username 	: 	req.body.username,
 		    	email 		: 	req.body.email,
-					password : req.body.password
 		  	});
-		  	//newUser.password = newUser.hashPassword(req.body.password);
-		  	newUser.save();
-		  	res.send(newUser);
+		  	newUser.password = newUser.hashPassword(req.body.password);
+		  	newUser.save((err, newUser) => {
+					res.send(newUser);
+				});
 			}
 		});
 });
 
 app.post('/login', (req, res) => {
-  	User.findOne({ username : req.body.username, password : req.body.password }, (err, user) => {
-    		if (err) { console.log(err) }
+  	User.findOne({ username : req.body.username}, (err, user) => {
+    	if (err) { console.log(err) }
 			if (!user) { res.status(404).send(`NO USER WITH USERNAME: ${req.body.username}`) }
 			else {
-				res.send(user)
+				if(!user.validPassword(req.body.password)){
+					res.status(404).send('Invalid Password');
+				}else{
+					res.send(user)
+				}
   		};
 		});
 });
