@@ -104,7 +104,7 @@ app.post('/register', (req, res) => {
 		  	newUser.password = newUser.hashPassword(req.body.password);
 		  	newUser.save((err, newUser) => {
 					console.log("sending over user");
-					res.send(newUser);
+					res.json(newUser);
 				});
 			}
 		});
