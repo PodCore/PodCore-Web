@@ -91,19 +91,16 @@ app.get('/', (req, res) => {
 require('./controllers/rooms')(app, rooms);
 
 app.post('/register', (req, res) => {
-		console.log("Registering a New User");
 		User.findOne({username : req.body.username}, (err, user) => {
 			if(user){
 				res.status(404).json({err : "User Already Exists"});
 			}else{
-				console.log("creating user info");
 		  	let newUser = new User({
 		    	username 	: 	req.body.username,
 		    	email 		: 	req.body.email,
 		  	});
 		  	newUser.password = newUser.hashPassword(req.body.password);
 		  	newUser.save((err, newUser) => {
-					console.log("sending over user");
 					res.json(newUser);
 				});
 			}
@@ -113,12 +110,12 @@ app.post('/register', (req, res) => {
 app.post('/login', (req, res) => {
   	User.findOne({ username : req.body.username}, (err, user) => {
     	if (err) { console.log(err) }
-			if (!user) { res.status(404).send(`NO USER WITH USERNAME: ${req.body.username}`) }
+			if (!user) { res.status(404).json({err : "NO USER WITH USERNAME: " +  req.body.username})}
 			else {
 				if(!user.validPassword(req.body.password)){
-					res.status(404).send('Invalid Password');
+					res.status(404).json({err : 'Invalid Password'});
 				}else{
-					res.send(user)
+					res.json(user)
 				}
   		};
 		});
