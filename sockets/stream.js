@@ -34,7 +34,7 @@ module.exports = (io, socket, rooms) => {
   socket.on('close_room', function(data) {
     delete rooms[data.owner];
     console.log("Closing Room: " + data.name);
-    io.emit('remove_room', data.owner);
+    io.emit('remove_room', {owner : data.owner});
   })
 
   socket.on('new_host', function(url) {
@@ -45,7 +45,7 @@ module.exports = (io, socket, rooms) => {
     if (socket.owner) {
       console.log('disconnect:', socket.owner)
       delete rooms[socket.owner]
-      io.emit('remove_room', socket.owner);
+      io.emit('remove_room', {owner : socket.owner});
     }
   })
 
