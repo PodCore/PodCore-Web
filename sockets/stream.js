@@ -33,7 +33,7 @@ module.exports = (io, socket, rooms) => {
 
   socket.on('close_room', function(data) {
     delete rooms[data.owner];
-    console.log("Closing Room: " + data.name);
+    console.log("Closing Room: " + data.owner);
     io.emit('remove_room', {owner : data.owner});
   })
 
