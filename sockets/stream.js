@@ -32,9 +32,10 @@ module.exports = (io, socket, rooms) => {
   })
 
   socket.on('close_room', function(data) {
+    let closingRoom = rooms[data.owner];
     delete rooms[data.owner];
     console.log("Closing Room: " + data.owner);
-    io.emit('remove_room', {owner : data.owner});
+    io.emit('remove_room', {room : closingRoom});
   })
 
   socket.on('new_host', function(url) {
