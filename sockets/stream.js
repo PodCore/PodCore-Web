@@ -32,10 +32,10 @@ module.exports = (io, socket, rooms) => {
   })
 
   socket.on('close_room', function(data) {
-    let closingRoom = rooms[data.owner];
+    let room = rooms[data.owner];
     delete rooms[data.owner];
     console.log("Closing Room: " + data.owner);
-    io.emit('remove_room', {room : closingRoom});
+    io.emit('remove_room', {room});
   })
 
   socket.on('new_host', function(url) {
@@ -45,9 +45,9 @@ module.exports = (io, socket, rooms) => {
   socket.on('disconnect', function() {
     if (socket.owner) {
       console.log('disconnect:', socket.owner)
-      let closingRoom = rooms[socket.owner];
+      let room = rooms[socket.owner];
       delete rooms[socket.owner]
-      io.emit('remove_room', {room : closingRoom});
+      io.emit('remove_room', {room));
     }
   })
 
