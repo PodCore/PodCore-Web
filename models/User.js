@@ -20,11 +20,11 @@ let userSchema = new mongoose.Schema({
     followers :  [String]
 });
 
-userSchema.methods.hashPassword = (pass) => {
+userSchema.methods.hashPassword = function(password){
 	return bcrypt.hashSync(pass, bcrypt.genSaltSync(8));
 };
 
-userSchema.methods.validPassword = (password) => {
+userSchema.methods.validPassword = function(password){
 	return bcrypt.compareSync(password, this.password);
 };
 
