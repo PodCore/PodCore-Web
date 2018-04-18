@@ -108,6 +108,7 @@ app.post('/register', (req, res) => {
 });
 
 app.post('/login', (req, res) => {
+	console.log("Trying to log in with " + req.body);
   	User.findOne({ username : req.body.username}, (err, user) => {
     	if (err) { console.log(err) }
 			if (!user) { res.send({err : "NO USER WITH USERNAME: " +  req.body.username})}
