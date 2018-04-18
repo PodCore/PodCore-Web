@@ -114,11 +114,14 @@ app.post('/login', (req, res) => {
 				console.log(err);
 				throw err;
 			}
-			if (!user) { res.send({err : "NO USER WITH USERNAME: " +  req.body.username})}
-			else {
+			if (!user) {
+				res.send({err : "NO USER WITH USERNAME: " +  req.body.username})
+			}else {
 				if(!user.validPassword(req.body.password)){
+					console.log("Wrong Password");
 					res.send({err : 'Invalid Password'});
 				}else{
+					console.log("Looking good");
 					res.send(user)
 				}
   		};
