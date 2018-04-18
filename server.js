@@ -109,20 +109,15 @@ app.post('/register', function(req, res) {
 
 app.post('/login', function(req, res){
   	User.findOne({ username : req.body.username}, (err, user) => {
-			console.log("Found User " + user);
     	if(err) {
-				console.log(err);
 				throw err;
 			}
 			if (!user) {
-				console.log("UMM");
 				res.json({err : "NO USER WITH USERNAME: " +  req.body.username})
 			}else {
 				if(!user.validPassword(req.body.password)){
-					console.log("Wrong Password");
 					res.json({err : 'Invalid Password'});
 				}else{
-					console.log("Looking good");
 					res.json(user)
 				}
   		};
