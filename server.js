@@ -115,6 +115,7 @@ app.post('/login', (req, res) => {
 				throw err;
 			}
 			if (!user) {
+				console.log("UMM");
 				res.send({err : "NO USER WITH USERNAME: " +  req.body.username})
 			}else {
 				if(!user.validPassword(req.body.password)){
