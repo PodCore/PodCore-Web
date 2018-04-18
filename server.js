@@ -93,7 +93,7 @@ require('./controllers/rooms')(app, rooms);
 app.post('/register', (req, res) => {
 		User.findOne({username : req.body.username}, (err, user) => {
 			if(user){
-				res.status(404).json({err : "User Already Exists"});
+				res.send({err : "User Already Exists"});
 			}else{
 		  	let newUser = new User({
 		    	username 	: 	req.body.username,
@@ -101,7 +101,7 @@ app.post('/register', (req, res) => {
 		  	});
 		  	newUser.password = newUser.hashPassword(req.body.password);
 		  	newUser.save((err, newUser) => {
-					res.json(newUser);
+					res.send(newUser);
 				});
 			}
 		});
@@ -110,12 +110,12 @@ app.post('/register', (req, res) => {
 app.post('/login', (req, res) => {
   	User.findOne({ username : req.body.username}, (err, user) => {
     	if (err) { console.log(err) }
-			if (!user) { res.status(404).json({err : "NO USER WITH USERNAME: " +  req.body.username})}
+			if (!user) { res.send({err : "NO USER WITH USERNAME: " +  req.body.username})}
 			else {
 				if(!user.validPassword(req.body.password)){
-					res.status(404).json({err : 'Invalid Password'});
+					res.send({err : 'Invalid Password'});
 				}else{
-					res.json(user)
+					res.send(user)
 				}
   		};
 		});
