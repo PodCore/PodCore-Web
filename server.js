@@ -90,7 +90,7 @@ app.get('/', (req, res) => {
 //Room Routes
 require('./controllers/rooms')(app, rooms);
 
-app.post('/register', (req, res) => {
+app.post('/register', function(req, res) {
 		User.findOne({username : req.body.username}, (err, user) => {
 			if(user){
 				res.send({err : "User Already Exists"});
@@ -107,7 +107,7 @@ app.post('/register', (req, res) => {
 		});
 });
 
-app.post('/login', (req, res) => {
+app.post('/login', function(req, res){
   	User.findOne({ username : req.body.username}, (err, user) => {
 			console.log("Found User " + user);
     	if(err) {
